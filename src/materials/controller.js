@@ -22,7 +22,44 @@ const getMaterialsById = (req, res) => {
   }) 
 }
 
+const addMaterial = (req, res) => {
+  const { name, unit_cost } = req.body;
+
+  //preventing duplicate adding, checking if material exists. Variable that we pass into the SQL query is in the array argument.
+  pool.query(queries.checkMaterialExists, [name], (error, results) => {
+    if (error) res.send(error);
+    if (results.rows.length) {
+      res.send("Material already exists.")
+    }
+    pool.query(queries.addMaterial, [name, unit_cost], (error, results) => {
+      if (error) throw (error);
+      res.status(201).send("Material added successfully!")
+    })
+  })
+  
+}
+
+const deleteMaterial = (req, res) => {
+  const id  = parseInt(req.params.id);
+  pool.query(queries.getMaterialsById, [id], (error, results) => {
+    const noMaterialFound = !results.rows.length;
+    if (error) throw error;
+    if (noMaterialFound) {
+      res.send("Material doesn't exist in database.")
+    }
+    pool.query(queries.deleteMaterial, [id], (error, results) => {
+      if (error) throw error;
+      res.status(200).send("Material deleted successfully.")
+    })
+
+
+  })
+  
+}
+
 module.exports = {
   getMaterials,
   getMaterialsById,
+  addMaterial,
+  deleteMaterial,
 }
