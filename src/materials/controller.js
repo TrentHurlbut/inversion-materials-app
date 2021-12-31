@@ -51,10 +51,23 @@ const deleteMaterial = (req, res) => {
       if (error) throw error;
       res.status(200).send("Material deleted successfully.")
     })
-
-
   })
-  
+}
+
+const updateMaterialName = (req, res) => {
+  const id = parseInt(req.params.id);
+  const { name } = req.body;
+  pool.query(queries.getMaterialsById, [id], (error, results) => {
+    const noMaterialFound = !results.rows.length;
+    if (error) throw error;
+    if (noMaterialFound) {
+      res.send("Material doesn't exist in database.")
+    }
+    pool.query(queries.updateMaterialName, [name, id], (error, results) => {
+      if (error) throw error;
+      res.status(200).send("Material updated successfully.");
+    })
+  })
 }
 
 module.exports = {
@@ -62,4 +75,5 @@ module.exports = {
   getMaterialsById,
   addMaterial,
   deleteMaterial,
+  updateMaterialName,
 }

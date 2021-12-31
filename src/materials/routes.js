@@ -9,5 +9,6 @@ router.post("/", controller.addMaterial);
 router.get("/:id", controller.getMaterialsById);
 //Routes can take only one kind of each method.
 router.delete("/:id", controller.deleteMaterial);
+router.put("/:id", controller.updateMaterialName);
 
 module.exports = router;
