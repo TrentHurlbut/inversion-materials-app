@@ -1,14 +1,14 @@
 //deployed at  https://git.heroku.com/salty-castle-17744.git
 
-const express = require('express');
-const materialsRoutes = require('./src/materials/routes')
+import express from 'express';
+import materialsRoutes from './routes';
 const app = express();
 const port = 3000;
 
 //Allows us to GET and POST JSON from endpoints.
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req: any, res: any) => {
   res.send("Hello, World!")
 })
 

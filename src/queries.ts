@@ -6,7 +6,7 @@ const addMaterial = "INSERT INTO materials (name, unit_cost) VALUES ($1, $2)";
 const deleteMaterial = "DELETE FROM materials WHERE id = $1";
 const updateMaterialName = "UPDATE materials SET name = $1 WHERE id = $2"
 
-module.exports = {
+export default {
   getMaterials,
   getMaterialsById,
   checkMaterialExists,

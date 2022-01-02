@@ -1,5 +1,5 @@
 //Business Logic
-import pool from '../db';
+import pool from './db';
 import queries from './queries';
 
 //First arg is SQL request
@@ -70,7 +70,7 @@ const updateMaterialName = (req: any, res: any) => {
   })
 }
 
-module.exports = {
+export default {
   getMaterials,
   getMaterialsById,
   addMaterial,

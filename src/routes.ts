@@ -1,6 +1,6 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
-const controller = require('./controller');
+import controller from './controller';
 
 router.get("/", controller.getMaterials);
 //post route
@@ -11,4 +11,4 @@ router.get("/:id", controller.getMaterialsById);
 router.delete("/:id", controller.deleteMaterial);
 router.put("/:id", controller.updateMaterialName);
 
-module.exports = router;
+export default router;
