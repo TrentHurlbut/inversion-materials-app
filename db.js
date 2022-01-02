@@ -1,4 +1,4 @@
-//App lives on https://peaceful-earth-31656.herokuapp.com/
+//App lives on https://damp-journey-24906.herokuapp.com/
 
 const Pool = require('pg').Pool;
 const pool = new Pool({
